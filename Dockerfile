@@ -14,5 +14,6 @@ WORKDIR /app
 COPY --from=build /app/publish ./
 
 ENV ASPNETCORE_URLS=http://+:5070
+EXPOSE 5070
 
 ENTRYPOINT ["dotnet", "TranslatorApi.dll"]
