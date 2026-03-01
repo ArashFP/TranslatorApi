@@ -3,11 +3,11 @@
 on:
   push:
     branches:
-      - development
+      - dev
       - main
   pull_request:
     branches:
-      - development
+      - dev
       - main
 
 jobs:
@@ -30,8 +30,8 @@ jobs:
 
       - name: Run container and test API
         run: |
-          docker run -d -p 8080:80 --name translator-test translatorapi:latest
-          sleep 10
+          docker run -d -p 8080:5070 --name translator-test translatorapi:latest
+          sleep 20
           curl -f http://localhost:8080/swagger
           docker stop translator-test
           docker rm translator-test
@@ -62,7 +62,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: dittdockerhubkonto/translatorapi:latest
+          tags: memorizedhooks/translatorapi:latest
 
   # --------------------------
   # 3️⃣ CD: Deploy till AWS Elastic Beanstalk
