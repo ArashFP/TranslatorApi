@@ -3,11 +3,11 @@
 on:
   push:
     branches:
-      - development
+      - dev
       - main
   pull_request:
     branches:
-      - development
+      - dev
       - main
 
 jobs:
