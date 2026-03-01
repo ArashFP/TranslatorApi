@@ -1,12 +1,18 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-COPY . .
+COPY *.csproj ./
 RUN dotnet restore
-RUN dotnet publish -c Release -o out
+
+COPY . ./
+
+RUN dotnet publish -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
-COPY --from=build /app/out .
+
+COPY --from=build /app/publish ./
+
+ENV ASPNETCORE_URLS=http://+:5070
 
 ENTRYPOINT ["dotnet", "TranslatorApi.dll"]
