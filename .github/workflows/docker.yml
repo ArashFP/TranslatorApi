@@ -88,5 +88,5 @@ jobs:
           environment_name: TranslatorApi-env
           version_label: ${{ github.sha }}
           region: eu-north-1
-          wait_for_recovery: 60
+          wait_for_environment_recovery: 60
           deployment_package: deploy.zip
